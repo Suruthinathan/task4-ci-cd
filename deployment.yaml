@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task4-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task4
+  template:
+    metadata:
+      labels:
+        app: task4
+    spec:
+      containers:
+      - name: task4-container
+        image: suruthi140205/task4-ci-cd:latest
+        ports:
+        - containerPort: 80
