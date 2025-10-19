@@ -1,156 +1,89 @@
-# Task 3 – Kubernetes Pod Management Web UI
-
-**Candidate Name:** Suruthi M S
-
-This repository contains the **React + TypeScript + Ant Design frontend** for managing Kubernetes pods.  
-It is connected to the backend application (Task 1) that provides REST APIs for tasks/pods.  
-
----
-
-## **Table of Contents**
-1. [Overview](#overview)  
-2. [Technologies Used](#technologies-used)  
-3. [Project Structure](#project-structure)  
-4. [Setup & Run](#setup--run)  
-5. [Features](#features)  
-6. [Screenshots](#screenshots)  
-7. [Usage Instructions](#usage-instructions)  
-
----
+# Task 4 – CI-CD Pipeline
 
 ## **Overview**
-This Web UI allows you to:  
-- Create a new Kubernetes pod  
-- View all pods in a table  
-- Search pods by name  
-- Delete pods  
-- Run commands in Kubernetes pods and view output  
 
-The frontend dynamically updates pod lists and command outputs using API calls.  
+This repository demonstrates a **CI-CD pipeline** for a sample React application (from Task 3).
 
----
+The pipeline is implemented using **GitHub Actions** and includes:
 
-## **Technologies Used**
-- React 19  
-- TypeScript  
-- Ant Design  
-- Axios (for HTTP requests)  
-- Node.js & npm  
+1. **Code build** – Installs dependencies and runs a build.
+2. **Docker build** – Builds a Docker image of the application.
+3. **Docker push** – Pushes the image to **Docker Hub**.
 
----
 
-## **Project Structure**
+## **Repository Structure**
+
+```
+task4-ci-cd/
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml       # GitHub Actions workflow
+├── Dockerfile              # Docker build instructions
+├── package.json            # React app metadata
+├── src/                    # React app source code
+└── public/                 # React app public files
 ```
 
-task3-webui/
-├── src/
-│   ├── components/
-│   │   ├── PodForm.tsx        # Form to create pods
-│   │   ├── PodList.tsx        # Table to view, search, delete pods
-│   │   └── CommandRunner.tsx  # Run commands & show output
-│   ├── App.tsx                # Main layout combining components
-│   └── api.ts                 # Axios API setup (optional)
-├── public/
-├── package.json
-├── tsconfig.json
-└── README.md
+---
 
-````
+## **CI-CD Workflow**
+
+The GitHub Actions workflow (`.github/workflows/ci-cd.yml`) performs the following steps:
+
+1. **Checkout code** – Pulls the repository code.
+2. **Set up Node.js** – Installs Node.js environment.
+3. **Install dependencies** – Runs `npm install`.
+4. **Run build** – Runs `npm run build`.
+5. **Docker build** – Builds the Docker image:
+
+   ```bash
+   docker build -t suruthi140205/task4-ci-cd:latest .
+   ```
+6. **Docker push** – Pushes the Docker image to Docker Hub.
 
 ---
 
-## **Setup & Run**
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd task3-webui
-````
+## **Docker Image**
 
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Start the development server:
-
-```bash
-npm start
-```
-
-4. Open the app in your browser:
-   [http://localhost:3000](http://localhost:3000)
-
-> **Note:** Ensure that the backend (Task 1 API) is running and accessible at the configured API URL. Adjust `axios` baseURL if necessary.
-
----
-
-## **Features**
-
-| Feature            | Description                                                     |
-| ------------------ | --------------------------------------------------------------- |
-| **Create Pod**     | Fill in `Pod Name` and `Image` in the form to create a new pod. |
-| **View Pods**      | Table displays all pods with `Name` and `Status`.               |
-| **Search Pods**    | Filter pods dynamically by typing in the search box.            |
-| **Delete Pod**     | Remove pods from the list with the Delete button.               |
-| **Command Runner** | Run shell commands inside Kubernetes pods and view output.      |
+* **Image name:** `suruthi140205/task4-ci-cd:latest`
+* **Docker Hub:** [https://hub.docker.com/r/suruthi140205/task4-ci-cd](https://hub.docker.com/r/suruthi140205/task4-ci-cd)
 
 ---
 
 ## **Screenshots**
 
-> All screenshots include **system date/time** and **candidate name**.
+Make sure to capture **screenshots for submission**:
 
-1. **Pod Creation Form**
-   ![Pod Creation](screenshots/pod-creation.png)
+| # | Feature / Description         | Screenshot                                                |
+| - | ----------------------------- | --------------------------------------------------------- |
+| 1 | CI-CD Tool Setup              | ![CI-CD Tool Setup](screenshots/CI-CD-Tool-Setup.png)     |
+| 2 | Docker Hub Secrets Configured | ![Docker Hub Secrets](screenshots/Docker-Hub-Secrets.png) |
+| 3 | Git Push to Repository        | ![Git Push](screenshots/git-push.png)                     |
+| 4 | Pipeline Run / Report         | ![Pipeline Report](screenshots/pipeline-report.png)       |
+| 5 | GitHub Repository             | ![Repository](screenshots/repository.png)                 |
+| 6 | GitHub Actions Workflow File  | ![Workflow File](screenshots/workflow file.png)           |  
 
-2. **Pod List / Table**
-   ![Pod List](screenshots/pod-list.png)
-   ![Pod List](screenshots/multiple-pod-creation.png)
 
+## **Usage**
 
-3. **Search Function**
-   ![Pod Search](screenshots/pod-search.png)
+1. Clone the repository:
 
-4. **Delete Pod**
-   ![Pod Delete](screenshots/pod-delete.png)
+```bash
+git clone https://github.com/Suruthinathan/task4-ci-cd.git
+cd task4-ci-cd
+```
 
-5. **Command Runner**
-   ![Command Runner](screenshots/command-runner.png)
+2. Build and run Docker locally (optional):
 
----
+```bash
+docker build -t suruthi140205/task4-ci-cd:latest .
+docker run -p 8080:80 suruthi140205/task4-ci-cd:latest
+```
 
-## **Usage Instructions**
+3. Access the app in your browser (optional):
 
-1. **Create Pod:**
-
-   * Enter pod name and image, then click `Create Pod`.
-   * Pod list updates automatically.
-
-2. **View / Search Pods:**
-
-   * Scroll down to the table to view all pods.
-   * Use the search box to filter pods by name.
-
-3. **Delete Pod:**
-
-   * Click the `Delete` button next to a pod.
-   * Pod is removed and table updates automatically.
-
-4. **Run Commands:**
-
-   * Type a command in the command runner input (e.g., `kubectl get pods`).
-   * Click `Run Command`.
-   * Output will appear in the box below.
+```
+http://localhost:8080
+```
 
 ---
-
-This README already covers:
-
-- ✅ Project overview  
-- ✅ Setup & run instructions  
-- ✅ Features  
-- ✅ Screenshots with placeholders  
-- ✅ Usage instructions  
-
-
