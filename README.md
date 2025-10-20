@@ -1,5 +1,18 @@
 # Task 4 – CI-CD Pipeline
 
+##  Author
+**Name:** Suruthi M S  
+**GitHub:** https://github.com/Suruthinathan  
+**Email:** suruthi1425@gmail.com
+
+## **Table of Contents**
+1. [Overview](#overview)
+2. [Repository Structure](#repository-structure)
+3. [CI-CD Workflow](#ci-cd-workflow)
+4. [Docker Image](#docker-image)
+5. [Screenshots](#screenshots)
+6. [Usage](#usage)
+
 ## **Overview**
 
 This repository demonstrates a **CI-CD pipeline** for a sample React application (from Task 3).
